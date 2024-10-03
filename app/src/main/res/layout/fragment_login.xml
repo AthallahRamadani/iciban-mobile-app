@@ -12,29 +12,30 @@
         android:id="@+id/banner_login"
         android:layout_width="wrap_content"
         android:layout_height="400dp"
+        android:contentDescription="@string/bannner_login"
         android:src="@drawable/banner_login"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <!--    <ImageView-->
-    <!--        android:id="@+id/banner_login"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="0dp"-->
-    <!--        android:layout_marginTop="-125dp"-->
-    <!--        android:contentDescription="@string/bannner_login"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toTopOf="parent"-->
-    <!--        tools:src="@drawable/banner_login" />-->
-
     <ImageView
         android:id="@+id/form_container"
-        android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_width="wrap_content"
+        android:layout_height="480dp"
+        android:layout_marginTop="-5dp"
         android:contentDescription="@string/form_login"
-        android:visibility="visible"
+        android:src="@drawable/form_container"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/banner_login"
-        tools:src="@drawable/form_container" />
+        app:layout_constraintTop_toBottomOf="@id/banner_login"
+        />
+<!--    <ImageView-->
+<!--        android:id="@+id/form_container"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:contentDescription="@string/form_login"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/banner_login"-->
+<!--        app:layout_constraintBaseline_toBottomOf="parent"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        tools:src="@drawable/form_container" />-->
 
     <TextView
         android:id="@+id/start_journey"
@@ -42,9 +43,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:fontFamily="@font/bebas_neue"
-        android:paddingHorizontal="25dp"
+        android:paddingHorizontal="20dp"
         android:text="@string/start_journey"
         android:textSize="18sp"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/form_container" />
 
