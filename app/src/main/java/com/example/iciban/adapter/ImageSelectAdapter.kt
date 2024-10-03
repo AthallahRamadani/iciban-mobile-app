@@ -1,28 +1,58 @@
 package com.example.iciban.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
+import androidx.core.content.ContextCompat
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
-import com.example.iciban.R
+import com.example.iciban.utils.RvState
+import com.example.iciban.databinding.ItemBinding
 
-class ImageSelectAdapter(private val images: List<Int>) : RecyclerView.Adapter<ImageSelectAdapter.ImageViewHolder>() {
 
-    inner class ImageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val imageView: ImageView = itemView.findViewById(R.id.iv_select)
+class ImageSelectAdapter(
+    private val rewards: List<Int>,
+    val rvState: MutableLiveData<RvState>,
+    val itemWidth: Int,
+    val itemHeight: Int
+): RecyclerView.Adapter<ImageSelectAdapter.RewardsHolder>() {
+
+    @SuppressLint("ClickableViewAccessibility")
+    inner class RewardsHolder(private val binding: ItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        var isLongClicked = false
+
+        init {
+
+            binding.root.layoutParams = binding.root.layoutParams.apply {
+                width = itemWidth
+                height = itemHeight
+            }
+
+
+
+        }
+
+        fun bind(id: Int) {
+            binding.imageView.setImageDrawable(ContextCompat.getDrawable(itemView.context, id))
+        }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item, parent, false)
-        return ImageViewHolder(view)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RewardsHolder {
+        return RewardsHolder(
+            ItemBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
     }
 
-    override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
-        holder.imageView.setImageResource(images[position])
+    override fun onBindViewHolder(holder: RewardsHolder, position: Int) {
+        holder.bind(rewards[position])
     }
 
     override fun getItemCount(): Int {
-        return images.size
+        return rewards.size
     }
 }

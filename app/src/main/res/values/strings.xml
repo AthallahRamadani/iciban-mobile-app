@@ -4,4 +4,12 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="start">Start</string>
     <string name="gacha">Gacha</string>
+
+
+    <string name="drag_down_to_activate_offer">Drag down to choose item</string>
+    <string name="release_to_choose_banner">Release to choose banner!</string>
+    <string name="t_amp_cs"><![CDATA[T&Cs]]></string>
+    <string name="choose_your_action_figure_banner">Choose your action figure banner</string>
+    <string name="activating_offer">Activating the offer for you…</string>
+
 </resources>
