@@ -10,6 +10,6 @@
     <string name="release_to_choose_banner">Release to choose banner!</string>
     <string name="t_amp_cs"><![CDATA[T&Cs]]></string>
     <string name="choose_your_action_figure_banner">Choose your action figure banner</string>
-    <string name="activating_offer">Activating the offer for you…</string>
+    <string name="loading">Loading…</string>
 
 </resources>
