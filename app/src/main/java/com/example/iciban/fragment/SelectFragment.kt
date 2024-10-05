@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.BounceInterpolator
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
@@ -51,11 +52,32 @@ class SelectFragment : Fragment() {
     private fun observeRvState() {
         rvState.observe(viewLifecycleOwner) { state ->
             updateUIBasedOnState(state)
-            if (state.progress > 0.5 && !state.isLongPressed) {
-                navigateToAnotherFragment(rewards[state.snapPosition])
+
+            // Periksa apakah progress cukup tinggi untuk interaksi yang signifikan
+            if (state.progress > 0.5) {
+                // Pastikan snapPosition valid sebelum digunakan
+                if (state.snapPosition >= 0 && state.snapPosition < rewards.size) {
+                    if (!state.isLongPressed) {
+                        navigateToAnotherFragment(rewards[state.snapPosition])
+                    }
+                } else {
+                    resetToInitialState()
+                }
             }
+
             layoutManager.scrollEnabled = !state.isLongPressed
         }
+    }
+
+    private fun resetToInitialState() {
+        rvState.value = RvState()
+
+        binding.rv.smoothScrollToPosition(0)
+        binding.frame.imageTintList = ColorStateList.valueOf(requireContext().getColor(R.color.primary))
+        binding.tvDragDown.setTextColor(requireContext().getColor(R.color.grey))
+        binding.tvDragDown.alpha = 1f
+        binding.tvMain.setTextColor(requireContext().getColor(R.color.white))
+        binding.tvMain.text = getString(R.string.choose_your_action_figure_banner)
     }
 
     private fun updateUIBasedOnState(state: RvState) {
@@ -72,7 +94,8 @@ class SelectFragment : Fragment() {
         binding.tvMain.apply {
             if (state.progress > 0.5) {
                 setTextColor(context.getColor(R.color.primary))
-                text = getString(if (state.isLongPressed) R.string.release_to_choose_banner else R.string.loading)
+                text =
+                    getString(if (state.isLongPressed) R.string.release_to_choose_banner else R.string.loading)
             } else {
                 setTextColor(context.getColor(R.color.white))
                 text = getString(R.string.choose_your_action_figure_banner)
@@ -115,7 +138,12 @@ class SelectFragment : Fragment() {
         setupSnapHelper()
     }
 
-    private fun adjustFrameLayoutParams(effViewWidth: Int, effViewHeight: Int, rvHeight: Int, extraPad: Int) {
+    private fun adjustFrameLayoutParams(
+        effViewWidth: Int,
+        effViewHeight: Int,
+        rvHeight: Int,
+        extraPad: Int
+    ) {
         (binding.frame.layoutParams as ConstraintLayout.LayoutParams).apply {
             width = effViewWidth
             height = effViewHeight
@@ -134,13 +162,18 @@ class SelectFragment : Fragment() {
         binding.rv.addOnScrollListener(snapOnScrollListener)
         snapOnScrollListener.snapPosition.observe(viewLifecycleOwner) { position ->
             rvState.value = rvState.value?.copy(snapPosition = position)
+
+            if (position != RecyclerView.NO_POSITION) {
+                binding.rv.smoothScrollToPosition(position)
+            }
         }
 
         ItemDragDownHelper(requireContext(), rvState, 0.5f, 1f).attachToRv(binding.rv)
     }
 
     private fun navigateToAnotherFragment(selectedImageResId: Int) {
-        val action = SelectFragmentDirections.actionSelectFragmentToGachaFragment(selectedImageResId)
+        val action =
+            SelectFragmentDirections.actionSelectFragmentToGachaFragment(selectedImageResId)
         findNavController().navigate(action)
     }
 
