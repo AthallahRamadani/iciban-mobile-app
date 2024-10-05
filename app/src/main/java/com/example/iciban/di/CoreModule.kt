@@ -1,9 +1,15 @@
-package com.example.iciban.data.di
+package com.example.iciban.di
 
 
 
+import android.content.Context
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
 import com.chuckerteam.chucker.api.ChuckerCollector
 import com.chuckerteam.chucker.api.ChuckerInterceptor
+import com.example.iciban.data.datasource.api.service.ApiService
+import com.example.iciban.data.datasource.preference.UserDataStore
 import com.example.iciban.data.repository.UserRepository
 import com.example.iciban.data.repository.UserRepositoryImpl
 import com.example.iciban.data.util.Constant
@@ -17,7 +23,7 @@ import org.koin.dsl.module
 
 
 val repositoryModule = module {
-    single { UserRepositoryImpl(get(), get(), get(), get()) } bind UserRepository::class
+    single { UserRepositoryImpl(get(), get()) } bind UserRepository::class
 }
 val apiModule = module {
     single<Retrofit> {
@@ -28,14 +34,9 @@ val apiModule = module {
             .build()
     }
 
-    single { HeaderInterceptor(get()) }
-    single { SupportAuthenticator(androidContext(), get()) }
-
     single {
         OkHttpClient.Builder().apply {
             addInterceptor(get<ChuckerInterceptor>())
-            addInterceptor(get<HeaderInterceptor>())
-            authenticator(get<SupportAuthenticator>())
         }.build()
     }
 
@@ -51,4 +52,12 @@ val apiModule = module {
     single<ApiService> {
         get<Retrofit>().create(ApiService::class.java)
     }
+}
+
+val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "APPLICATION_PREFERENCE")
+
+
+val preferenceModule = module {
+    single { androidContext().dataStore }
+    single { UserDataStore(get()) }
 }

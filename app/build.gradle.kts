@@ -32,7 +32,7 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
     buildFeatures {
         viewBinding = true
@@ -52,20 +52,22 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
+
     //retrofit
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
-    implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.logging.interceptor)
 
     //datastore
-    implementation("androidx.datastore:datastore-preferences-core:1.1.0-dev01")
+    implementation(libs.androidx.datastore.preferences.core)
+    implementation(libs.androidx.datastore.preferences)
 
     //koin
-    implementation("io.insert-koin:koin-core:3.4.3")
-    implementation("io.insert-koin:koin-android:3.4.3")
+    implementation(libs.koin.core)
+    implementation(libs.koin.android)
 
     //chucker
-    debugImplementation("com.github.chuckerteam.chucker:library:4.0.0")
-    releaseImplementation("com.github.chuckerteam.chucker:library-no-op:4.0.0")
+    debugImplementation(libs.library)
+    releaseImplementation(libs.library.no.op)
 
 }

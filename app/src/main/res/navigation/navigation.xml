@@ -48,7 +48,7 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.example.iciban.fragment.RegisterFragment"
+        android:name="com.example.iciban.fragment.register.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" >
         <action

@@ -6,6 +6,6 @@ class Constant {
         //API_KEY 2 = 876f883d026f493eba3405a77efc62b6
         //API_KEY 3 = d4d46e309bbb4e598b9f1ead2a579be5
         //API_KEY 4 = c03bf592e1ed476787cef8d923e201a1
-        const val BASE_URL = "http://localhost:8080/"
+        const val BASE_URL = "http://10.0.2.2:8080/"
     }
 }

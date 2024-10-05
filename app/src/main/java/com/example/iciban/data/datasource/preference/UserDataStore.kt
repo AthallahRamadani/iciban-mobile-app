@@ -1,16 +1,18 @@
 package com.example.iciban.data.datasource.preference
 
 import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
+import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
-import androidx.datastore.preferences.core.edit
 import com.example.iciban.data.model.User
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import java.util.prefs.Preferences
 
-class UserDataStore (private val dataStore: DataStore<Preferences>) {
+class UserDataStore(private val dataStore: DataStore<Preferences>) {
+
+    private val language = stringPreferencesKey("language")
     private val refToken = stringPreferencesKey("ref_token")
     private val accToken = stringPreferencesKey("acc_token")
     private val isOnboard = booleanPreferencesKey("is_onboard")
@@ -20,6 +22,16 @@ class UserDataStore (private val dataStore: DataStore<Preferences>) {
     private val userImage = stringPreferencesKey("user_image")
     private val userExpires = longPreferencesKey("user_expires")
     private val USER_AUTHORIZE_KEY = booleanPreferencesKey("user_authorize")
+
+    fun getLanguage(): Flow<String> = dataStore.data.map{
+        it[language] ?: "en"
+    }
+
+    suspend fun setLanguage(value: String?) {
+        dataStore.edit {
+            it[language] = value ?: "en"
+        }
+    }
 
     fun getRefToken(): Flow<String> {
         return dataStore.data.map {
@@ -95,11 +107,9 @@ class UserDataStore (private val dataStore: DataStore<Preferences>) {
 
     suspend fun setUserDataSession(user: User) {
         dataStore.edit { preferences ->
-            user.userName?.let { preferences[username] = it }
+            user.username?.let { preferences[username] = it }
             user.accessToken?.let { preferences[accToken] = it }
             user.refreshToken?.let { preferences[refToken] = it }
-            user.userImage?.let { preferences[userImage] = it }
-            user.expiresAt?.let { preferences[userExpires] = it }
         }
     }
 
@@ -117,10 +127,8 @@ class UserDataStore (private val dataStore: DataStore<Preferences>) {
     fun getUserDataSession(): Flow<User> = dataStore.data.map { preferences ->
         User(
             preferences[username],
-            preferences[userImage],
             preferences[accToken],
-            preferences[refToken],
-            preferences[userExpires]
+            preferences[refToken]
         )
     }
 
