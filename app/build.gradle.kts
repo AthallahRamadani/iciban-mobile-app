@@ -60,4 +60,12 @@ dependencies {
     //datastore
     implementation("androidx.datastore:datastore-preferences-core:1.1.0-dev01")
 
+    //koin
+    implementation("io.insert-koin:koin-core:3.4.3")
+    implementation("io.insert-koin:koin-android:3.4.3")
+
+    //chucker
+    debugImplementation("com.github.chuckerteam.chucker:library:4.0.0")
+    releaseImplementation("com.github.chuckerteam.chucker:library-no-op:4.0.0")
+
 }

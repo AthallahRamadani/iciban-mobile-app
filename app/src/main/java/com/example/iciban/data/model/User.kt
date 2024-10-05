@@ -1,4 +1,4 @@
-package com.example.iciban.data.datasource.model
+package com.example.iciban.data.model
 
 import com.example.iciban.data.datasource.api.response.BaseEntity
 
