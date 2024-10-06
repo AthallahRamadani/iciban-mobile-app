@@ -12,4 +12,22 @@
     <string name="choose_your_action_figure_banner">Choose your action figure banner</string>
     <string name="loading">Loading…</string>
 
+
+    <string name="bannner_login">Banner Login</string>
+    <string name="form_login">form container</string>
+    <string name="start_journey">Start your journey to fortune</string>
+    <string name="signin_for_new_jour">Sign up now and start your winning journey!</string>
+    <string name="fullname">Fullname</string>
+    <string name="email">Email</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="pass">Password</string>
+    <string name="dont_have_account">Don’t have an account? </string>
+    <string name="already_have_account">Already have an account?</string>
+    <string name="login"> Login</string>
+    <string name="register">Register</string>
+    <string name="username">Username</string>
+    <string name="email_invalid">Invalid email.</string>
+    <string name="password_invalid">Invalid password.</string>
+    <string name="logout">Logout</string>
+
 </resources>
