@@ -13,8 +13,31 @@ class UserRepositoryImpl(
     private val apiService: ApiService,
     private val appPreferences: UserDataStore
 ) : UserRepository {
-    override suspend fun login(email: String, password: String): Flow<ResultState<Boolean>> {
-        TODO("Not yet implemented")
+
+
+    override suspend fun login(
+        username: String, password: String
+    ): Flow<ResultState<Boolean>> = flow {
+        emit(ResultState.Loading)
+        try {
+            val request = AuthRequest(
+                username,
+                password
+            )
+            val response = apiService.login(request)
+            val user = response.data?.toUser()
+            if (user != null) {
+                appPreferences.setUserDataSession(user)
+                appPreferences.setUserAuthorization(true)
+                emit(ResultState.Succes(true))
+            } else {
+                throw Exception("Failed")
+            }
+        } catch (e: Exception) {
+            emit(ResultState.Error(e))
+        }
+
+
     }
 
     override suspend fun register(
