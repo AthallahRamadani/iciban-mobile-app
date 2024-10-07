@@ -28,10 +28,10 @@ class ArcLayoutManager(
         RecyclerView.LayoutParams(MATCH_PARENT, MATCH_PARENT)
 
     override fun onLayoutChildren(recycler: RecyclerView.Recycler, state: RecyclerView.State) {
-        fill(recycler, state)
+        fill(recycler)
     }
 
-    private fun fill(recycler: RecyclerView.Recycler, state: RecyclerView.State) {
+    private fun fill(recycler: RecyclerView.Recycler) {
         detachAndScrapAttachedViews(recycler)
 
         // Looping
@@ -48,16 +48,6 @@ class ArcLayoutManager(
             addView(view)
 
             layoutChildView(index, viewWidth, view)
-
-//            if (recyclerIndex == itemCount/2) {
-//                val target = LayoutInflater.from(view.context).inflate(R.layout.item_view, null)
-//
-//                target.apply {
-//                    layoutParams = RecyclerView.LayoutParams(viewWidth, viewHeight)
-//                    setBackgroundColor(Color.BLUE)
-//                }
-//                layoutTarget(recyclerIndex, viewWidth, view)
-//            }
         }
 
         // Remove scrap views
@@ -65,24 +55,6 @@ class ArcLayoutManager(
         scrapListCopy.forEach {
             recycler.recycleView(it.itemView)
         }
-    }
-
-    private fun layoutTarget(i: Int, viewWidthWithSpacing: Int, view: View) {
-        val targetWidth = viewWidth
-        val targetHeight = viewHeight
-        val dw = viewWidth - targetWidth
-
-        val viewLeft = i * viewWidthWithSpacing - horizontalScrollOffset
-        val left = viewLeft + dw/2
-        val right = left + targetWidth
-
-        val top = height - targetHeight
-        val bottom = top + targetHeight
-
-        // Measure
-        measureChild(view, targetWidth, targetHeight)
-        // Layout
-        layoutDecorated(view, left, top, right, bottom)
     }
 
     private fun layoutChildView(i: Int, viewWidthWithSpacing: Int, view: View) {
@@ -117,7 +89,7 @@ class ArcLayoutManager(
         state: RecyclerView.State
     ): Int {
         horizontalScrollOffset += dx
-        fill(recycler, state)
+        fill(recycler)
         return dx
     }
 }

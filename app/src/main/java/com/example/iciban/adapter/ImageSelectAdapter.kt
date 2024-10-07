@@ -1,19 +1,15 @@
 package com.example.iciban.adapter
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
-import com.example.iciban.utils.RvState
 import com.example.iciban.databinding.ItemBinding
 
 
 class ImageSelectAdapter(
     private val rewards: List<Int>,
-    val rvState: MutableLiveData<RvState>,
     val itemWidth: Int,
     val itemHeight: Int
 ): RecyclerView.Adapter<ImageSelectAdapter.RewardsHolder>() {

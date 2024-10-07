@@ -24,9 +24,9 @@ class GachaFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val args: GachaFragmentArgs by navArgs()
-        val imageResId = args.selectedImage
+        val category = args.selectedCategory
 
-        binding.ivGacha.setImageResource(imageResId)
+        binding.tvGacha.text = category
     }
 
     override fun onDestroyView() {

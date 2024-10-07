@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.BounceInterpolator
-import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
@@ -17,6 +16,7 @@ import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.iciban.R
 import com.example.iciban.adapter.ImageSelectAdapter
+import com.example.iciban.data.model.Category
 import com.example.iciban.databinding.FragmentSelectBinding
 import com.example.iciban.utils.ArcLayoutManager
 import com.example.iciban.utils.ItemDragDownHelper
@@ -30,7 +30,11 @@ class SelectFragment : Fragment() {
     private lateinit var snapHelper: LinearSnapHelper
     private lateinit var layoutManager: ArcLayoutManager
     private val rvState = MutableLiveData(RvState())
-    private val rewards = listOf(R.drawable.banner_1, R.drawable.banner_2, R.drawable.banner_3)
+    private val rewards = listOf(
+        Category(1, "Bleach", R.drawable.banner_bleach),
+        Category(2, "Naruto", R.drawable.banner_naturo),
+        Category(3, "One Piece", R.drawable.banner_half_piece)
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,12 +42,14 @@ class SelectFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentSelectBinding.inflate(inflater, container, false)
+        setupArrowAnimation()
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         rvState.value = RvState()
+        binding.rv.smoothScrollToPosition(0)
         setupRecyclerView()
         setupArrowAnimation()
         observeRvState()
@@ -53,12 +59,11 @@ class SelectFragment : Fragment() {
         rvState.observe(viewLifecycleOwner) { state ->
             updateUIBasedOnState(state)
 
-            // Periksa apakah progress cukup tinggi untuk interaksi yang signifikan
             if (state.progress > 0.5) {
-                // Pastikan snapPosition valid sebelum digunakan
                 if (state.snapPosition >= 0 && state.snapPosition < rewards.size) {
                     if (!state.isLongPressed) {
-                        navigateToAnotherFragment(rewards[state.snapPosition])
+                        val rewardCategory = rewards.map { it.name }
+                        navigateToAnotherFragment(rewardCategory[state.snapPosition])
                     }
                 } else {
                     resetToInitialState()
@@ -71,20 +76,16 @@ class SelectFragment : Fragment() {
 
     private fun resetToInitialState() {
         rvState.value = RvState()
-
         binding.rv.smoothScrollToPosition(0)
-        binding.frame.imageTintList = ColorStateList.valueOf(requireContext().getColor(R.color.primary))
+
         binding.tvDragDown.setTextColor(requireContext().getColor(R.color.grey))
         binding.tvDragDown.alpha = 1f
-        binding.tvMain.setTextColor(requireContext().getColor(R.color.white))
+        binding.tvMain.setTextColor(requireContext().getColor(R.color.black))
         binding.tvMain.text = getString(R.string.choose_your_action_figure_banner)
     }
 
     private fun updateUIBasedOnState(state: RvState) {
         val context = requireContext()
-        binding.frame.imageTintList = ColorStateList.valueOf(
-            context.getColor(if (state.isLongPressed || state.progress > 0.5) R.color.grey else R.color.primary)
-        )
 
         binding.tvDragDown.apply {
             setTextColor(context.getColor(if (!state.isLongPressed) R.color.grey else R.color.primary))
@@ -97,7 +98,7 @@ class SelectFragment : Fragment() {
                 text =
                     getString(if (state.isLongPressed) R.string.release_to_choose_banner else R.string.loading)
             } else {
-                setTextColor(context.getColor(R.color.white))
+                setTextColor(context.getColor(R.color.black))
                 text = getString(R.string.choose_your_action_figure_banner)
             }
         }
@@ -115,43 +116,28 @@ class SelectFragment : Fragment() {
 
     private fun setupRecyclerView() {
         val screenWidth = Resources.getSystem().displayMetrics.widthPixels
-        val rvHeight = resources.getDimension(R.dimen.recyclerview_height).toInt()
-        val pad = resources.getDimension(R.dimen.item_spacing).toInt()
-        val selectBoxPadFraction = 0.5f
+        val pad = resources.getDimension(R.dimen.item_spacing).toInt() - 100000
+        val selectBoxPadFraction = 0.25f
         val selectBoxPad = (selectBoxPadFraction * pad).toInt()
         val extraPad = pad - selectBoxPad
-        val viewWidth = screenWidth / 2
+        val viewWidth = (screenWidth / 1)
         val viewHeight = (1.25f * viewWidth).toInt()
 
         val effViewWidth = viewWidth - 2 * extraPad
-        val effViewHeight = viewHeight - 2 * extraPad
-        val viewScaleFactor = effViewWidth.toFloat() / (effViewWidth - 2 * selectBoxPad)
+        effViewWidth.toFloat() / (effViewWidth - 2 * selectBoxPad)
+        val rewardImages = rewards.map { it.imageResId }
+
 
         binding.rv.apply {
-            adapter = ImageSelectAdapter(rewards, rvState, viewWidth, viewHeight)
+            adapter = ImageSelectAdapter(rewardImages, viewWidth, viewHeight)
             layoutManager = ArcLayoutManager(resources, screenWidth, viewWidth, viewHeight).also {
                 this@SelectFragment.layoutManager = it
             }
         }
 
-        adjustFrameLayoutParams(effViewWidth, effViewHeight, rvHeight, extraPad)
         setupSnapHelper()
     }
 
-    private fun adjustFrameLayoutParams(
-        effViewWidth: Int,
-        effViewHeight: Int,
-        rvHeight: Int,
-        extraPad: Int
-    ) {
-        (binding.frame.layoutParams as ConstraintLayout.LayoutParams).apply {
-            width = effViewWidth
-            height = effViewHeight
-            topMargin = rvHeight + extraPad
-        }
-
-        binding.glowView.layoutParams.width = effViewWidth
-    }
 
     private fun setupSnapHelper() {
         snapHelper = LinearSnapHelper().apply {
@@ -171,9 +157,9 @@ class SelectFragment : Fragment() {
         ItemDragDownHelper(requireContext(), rvState, 0.5f, 1f).attachToRv(binding.rv)
     }
 
-    private fun navigateToAnotherFragment(selectedImageResId: Int) {
+    private fun navigateToAnotherFragment(selectedCategory: String) {
         val action =
-            SelectFragmentDirections.actionSelectFragmentToGachaFragment(selectedImageResId)
+            SelectFragmentDirections.actionSelectFragmentToGachaFragment(selectedCategory)
         findNavController().navigate(action)
     }
 
