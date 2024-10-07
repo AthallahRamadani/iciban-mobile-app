@@ -1,7 +1,6 @@
 package com.example.iciban.fragment.login
 
 import android.os.Bundle
-import android.util.Patterns
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -16,7 +15,6 @@ import com.example.iciban.data.ResultState
 import com.example.iciban.databinding.FragmentLoginBinding
 import com.example.iciban.utils.getErrorMessage
 import com.example.iciban.utils.showSnackbar
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -45,6 +43,11 @@ class LoginFragment : Fragment() {
         binding.navRegister.setOnClickListener {
             findNavController().navigate(R.id.action_login_to_registerFragment)
         }
+        binding.btnLogin.setOnClickListener{
+            val username = binding.etEmail.text.toString()
+            val password = binding.etPassword.text.toString()
+            viewModel.makeLogin(username,password)
+        }
     }
 
     private fun initViewBtnValid(){
@@ -53,7 +56,7 @@ class LoginFragment : Fragment() {
             it, _, _, _ ->
             val text = it.toString()
             binding.emailLayout.error =
-                if (!isEmailValid(text) && text.isNotEmpty()) "Invalid email" else null
+                if (!isUsernameValid(text) && text.isNotEmpty()) "Invalid username" else null
             binding.btnLogin.isEnabled = true
             updateButtonState()
         }
@@ -67,16 +70,15 @@ class LoginFragment : Fragment() {
     }
 
     private fun updateButtonState() {
-        val email = binding.etEmail.text.toString()
+        val username = binding.etEmail.text.toString()
         val password = binding.etPassword.text.toString()
-        val isEmailValid = isEmailValid(email)
+        val isUsernameValid = isUsernameValid(username)
         val isPasswordValid = isPasswordValid(password)
-        binding.btnLogin.isEnabled = isEmailValid && isPasswordValid
+        binding.btnLogin.isEnabled = isUsernameValid && isPasswordValid
     }
 
-    private fun isEmailValid(email: String): Boolean {
-        val pattern = Patterns.EMAIL_ADDRESS
-        return pattern.matcher(email).matches()
+    private fun isUsernameValid(username: String): Boolean {
+        return username.length >= 3
     }
     private fun isPasswordValid(password: String): Boolean {
         return password.length >= 8

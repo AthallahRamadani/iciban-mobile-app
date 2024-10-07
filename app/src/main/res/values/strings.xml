@@ -20,4 +20,5 @@
     <string name="email_invalid">Invalid email.</string>
     <string name="password_invalid">Invalid password.</string>
     <string name="forget_pass">Forget Password?</string>
+    <string name="naturo_action_fig">Uzumaki Naruto\nLimited Edition</string>
 </resources>
