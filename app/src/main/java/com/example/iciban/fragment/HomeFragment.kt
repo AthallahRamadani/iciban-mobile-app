@@ -21,7 +21,7 @@ class HomeFragment : Fragment() {
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         binding.btnStart.setOnClickListener{
-            findNavController().navigate(R.id.action_homeFragment_to_selectFragment)
+            findNavController().navigate(R.id.action_homeFragment_to_itemDetailFragment)
         }
         return binding.root
     }

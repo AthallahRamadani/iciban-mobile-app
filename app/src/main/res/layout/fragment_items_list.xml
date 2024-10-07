@@ -3,16 +3,73 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginHorizontal="24dp"
+    android:background="@color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.items.ItemsListFragment">
+
+    <TextView
+        android:id="@+id/title_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/naturo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="28sp"
+        android:fontFamily="@font/bebas_neue"
+        android:textColor="@color/black"
+        />
+    <TextView
+        android:id="@+id/tx_item_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/item_list"
+        android:fontFamily="@font/inter"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@id/title_category"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_action_figrure"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        app:layout_constraintBaseline_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        />
+        android:layout_margin="10dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toEndOf="@id/tx_item_list"
+        app:layout_constraintTop_toBottomOf="@id/tx_item_list"
+        tools:listitem="@layout/fragment_layout_action_figure"
+         />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginHorizontal="20dp"
+        android:background="@color/white">
+        <ImageButton
+            android:id="@+id/btn_pull_one"
+            android:layout_width="120dp"
+            android:layout_height="80dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:src="@drawable/one_pull"
+            android:backgroundTint="@color/white"
+            />
+        <ImageButton
+            android:id="@+id/btn_pull_five"
+            android:layout_width="120dp"
+            android:layout_height="80dp"
+            android:scaleType="centerInside"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/five_pull"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:backgroundTint="@color/white"
+
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 
 
