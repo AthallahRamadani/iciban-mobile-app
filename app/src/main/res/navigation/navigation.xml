@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/login">
+    app:startDestination="@id/homeFragment">
 
     <fragment
         android:id="@+id/homeFragment"
@@ -14,8 +14,8 @@
             android:id="@+id/action_homeFragment_to_selectFragment"
             app:destination="@id/selectFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_itemDetailFragment"
-            app:destination="@id/itemDetailFragment" />
+            android:id="@+id/action_homeFragment_to_itemsListFragment"
+            app:destination="@id/itemsListFragment" />
     </fragment>
 
     <fragment
@@ -60,6 +60,15 @@
         <action
             android:id="@+id/action_registerFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/itemsListFragment"
+        android:name="com.example.iciban.fragment.items.ItemsListFragment"
+        android:label="fragment_items_list"
+        tools:layout="@layout/fragment_items_list" >
+        <action
+            android:id="@+id/action_itemsListFragment_to_itemDetailFragment"
+            app:destination="@id/itemDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/itemDetailFragment"

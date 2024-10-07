@@ -1,28 +1,61 @@
 package com.example.iciban.fragment.items
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.iciban.R
+import com.example.iciban.data.model.ActionFigure
+import com.example.iciban.databinding.FragmentItemsListBinding
 
 class ItemsListFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private var _binding: FragmentItemsListBinding? = null
+    private val binding get() = _binding!!
+    private lateinit var itemListAdapter: ItemListAdapter
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
+    private val actionFigure = listOf(
+        ActionFigure(
+            "Naruto",
+            R.drawable.naturo_action_fig,
+            5.0f,
+            1,
+            2,
+            "Naruto follows the journey of Naruto Uzumaki, a young ninja striving to gain recognition from his village and become the Hokage. Along the way, he faces numerous enemies, hones his skills, and searches for his true identity.",
+            "naturo"
+        ), ActionFigure(
+            "Naruto",
+            R.drawable.naturo_action_fig,
+            5.0f,
+            1,
+            2,
+            "Naruto follows the journey of Naruto Uzumaki, a young ninja striving to gain recognition from his village and become the Hokage. Along the way, he faces numerous enemies, hones his skills, and searches for his true identity.",
+            "naturo"
+        ),
+        ActionFigure(
+            "Naruto",
+            R.drawable.naturo_action_fig,
+            5.0f,
+            1,
+            2,
+            "Naruto follows the journey of Naruto Uzumaki, a young ninja striving to gain recognition from his village and become the Hokage. Along the way, he faces numerous enemies, hones his skills, and searches for his true identity.",
+            "naturo"
+        )
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_items_list, container, false)
+    ): View {
+        _binding = FragmentItemsListBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.rvActionFigure.layoutManager = GridLayoutManager(requireContext(),2)
+        itemListAdapter = ItemListAdapter(requireContext(), actionFigure)
+        binding.rvActionFigure.adapter = itemListAdapter
+    }
 }
