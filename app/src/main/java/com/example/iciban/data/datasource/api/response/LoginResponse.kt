@@ -1,28 +1,25 @@
 package com.example.iciban.data.datasource.api.response
 
+import com.google.gson.annotations.SerializedName
+
 data class LoginResponse(
-	val data: Data? = null,
+
+	@field:SerializedName("data")
+	val data: LoginDataResponse? = null,
+
+	@field:SerializedName("message")
 	val message: String? = null,
+
+	@field:SerializedName("status")
 	val status: String? = null
 )
 
-data class Data(
+data class LoginDataResponse(
+
+	@field:SerializedName("accessToken")
 	val accessToken: String? = null,
-	val refreshToken: String? = null,
-	val user: User? = null
-)
 
-data class User(
-	val photo: Any? = null,
-	val id: Int? = null,
-	val cloudinaryImageId: Any? = null,
-	val email: String? = null,
-	val baseEntity: BaseEntity? = null,
-	val username: String? = null
-)
-
-data class BaseEntity(
-	val createdAt: String? = null,
-	val updatedAt: String? = null
+	@field:SerializedName("refreshToken")
+	val refreshToken: String? = null
 )
 

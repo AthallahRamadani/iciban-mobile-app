@@ -71,4 +71,8 @@ dependencies {
     debugImplementation(libs.library)
     releaseImplementation(libs.library.no.op)
 
+    //lottieAnimation
+    implementation ("com.airbnb.android:lottie:6.5.2")
+
+
 }
