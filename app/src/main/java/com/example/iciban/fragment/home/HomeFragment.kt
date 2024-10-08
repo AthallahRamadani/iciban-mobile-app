@@ -30,7 +30,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.btnStart.setOnClickListener{
-            findNavController().navigate(R.id.action_homeFragment_to_selectFragment)
+            findNavController().navigate(R.id.action_homeFragment_to_itemsListFragment)
         }
         binding.tvUsername.text = viewModel.prefGetUsername()
         binding.btnLogout.setOnClickListener{

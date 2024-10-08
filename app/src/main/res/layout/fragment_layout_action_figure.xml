@@ -1,55 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:gravity="center"
-    android:orientation="vertical">
-    <ImageView
-        android:id="@+id/iv_action_figure"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:contentDescription="@string/naturo_action_fig"
-        android:src="@drawable/naturo_action_fig"
-        android:scaleType="centerCrop"/>
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/email_layout"
-        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="-20dp"
-        app:boxCornerRadiusBottomEnd="25dp"
-        app:boxCornerRadiusBottomStart="25dp"
-        app:boxCornerRadiusTopEnd="25dp"
-        app:boxCornerRadiusTopStart="25dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:boxStrokeColor="@color/black"
-        app:hintTextColor="@color/black"
-        app:cursorColor="@color/black"
-        android:background="@color/black"
-        app:layout_constraintTop_toBottomOf="@id/start_journey">
+        android:gravity="center"
+        android:orientation="vertical">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_email"
+        <ImageView
+            android:id="@+id/iv_action_figure_item"
             android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:contentDescription="@string/naturo_action_fig"
+            android:scaleType="centerCrop"
+            android:src="@drawable/naturo_action_fig"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <RatingBar
+            android:id="@+id/rating_item"
+            style="@style/Widget.AppCompat.RatingBar.Small"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textStyle="bold"
+            android:background="@drawable/text_view_bg_avaible"
+            android:paddingHorizontal="10dp"
+            android:progressTint="#F3C211"
+            android:rating="5"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+            />
+
+        <TextView
+            android:id="@+id/title_action_fig_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-20dp"
+            android:background="@drawable/text_view_bg_rounded"
+            android:fontFamily="@font/inter"
+            android:paddingHorizontal="16sp"
+            android:paddingVertical="2dp"
+            android:text="@string/naturo_action_fig"
             android:textColor="@color/white"
-            android:hint="@string/username" />
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
 
-    </com.google.android.material.textfield.TextInputLayout>
-
-
-
-
-
-</LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

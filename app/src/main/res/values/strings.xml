@@ -32,4 +32,13 @@
 
     <string name="forget_pass">Forget Password?</string>
     <string name="naturo_action_fig">Uzumaki Naruto\nLimited Edition</string>
+    <string name="naturo">Naturo Shippuden</string>
+    <string name="item_list">Item List</string>
+    <string name="item_details">Item Detail</string>
+    <string name="avaible">Availability</string>
+    <string name="avaible_stock">1/2</string>
+    <string name="rarity">Rarity</string>
+    <string name="desc">Description</string>
+    <string name="description">Naruto follows the journey of Naruto Uzumaki, a young ninja striving to gain recognition from his village and become the Hokage. Along the way, he faces numerous enemies, hones his skills, and searches for his true identity.</string>
+    <string name="gradient">gradient</string>
 </resources>
