@@ -1,6 +1,7 @@
 package com.example.iciban.fragment.items
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,11 +10,16 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.iciban.R
 import com.example.iciban.data.model.ActionFigure
 import com.example.iciban.databinding.FragmentItemsListBinding
+import com.example.iciban.fragment.selectbanner.SelectBannerViewModel
+import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
 class ItemsListFragment : Fragment() {
     private var _binding: FragmentItemsListBinding? = null
     private val binding get() = _binding!!
     private lateinit var itemListAdapter: ItemListAdapter
+
+    private val selectBannerViewModel: SelectBannerViewModel by activityViewModel()
+
 
     private val actionFigure = listOf(
         ActionFigure(
@@ -54,8 +60,13 @@ class ItemsListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         binding.rvActionFigure.layoutManager = GridLayoutManager(requireContext(),2)
         itemListAdapter = ItemListAdapter(requireContext(), actionFigure)
         binding.rvActionFigure.adapter = itemListAdapter
+
+        selectBannerViewModel.bannerSelected.observe(viewLifecycleOwner) { selectedBanner ->
+            binding.titleCategory.text = selectedBanner
+        }
     }
 }

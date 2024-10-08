@@ -164,7 +164,7 @@ class SelectbannerFragment : Fragment() {
 
     private fun navigateToAnotherFragment() {
         val action =
-            SelectbannerFragmentDirections.actionSelectFragmentToGachaFragment()
+            SelectbannerFragmentDirections.actionSelectFragmentToItemsListFragment()
         findNavController().navigate(action)
     }
 
