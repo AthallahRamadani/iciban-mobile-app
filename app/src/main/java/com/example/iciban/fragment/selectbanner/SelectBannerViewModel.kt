@@ -1,4 +1,4 @@
-package com.example.iciban.fragment.select
+package com.example.iciban.fragment.selectbanner
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

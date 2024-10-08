@@ -1,4 +1,4 @@
-package com.example.iciban.fragment.select
+package com.example.iciban.fragment.selectbanner
 
 import android.animation.ObjectAnimator
 import android.content.res.Resources
@@ -22,7 +22,6 @@ import com.example.iciban.utils.ItemDragDownHelper
 import com.example.iciban.utils.RvState
 import com.example.iciban.utils.SnapOnScrollListener
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class SelectbannerFragment : Fragment() {

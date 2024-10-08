@@ -21,7 +21,7 @@
 
     <fragment
         android:id="@+id/selectFragment"
-        android:name="com.example.iciban.fragment.select.SelectbannerFragment"
+        android:name="com.example.iciban.fragment.selectbanner.SelectbannerFragment"
         android:label="fragment_select"
         tools:layout="@layout/fragment_select">
         <action

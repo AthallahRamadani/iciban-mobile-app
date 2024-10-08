@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.iciban.databinding.FragmentGachaBinding
-import com.example.iciban.fragment.select.SelectBannerViewModel
+import com.example.iciban.fragment.selectbanner.SelectBannerViewModel
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
 class GachaFragment : Fragment() {

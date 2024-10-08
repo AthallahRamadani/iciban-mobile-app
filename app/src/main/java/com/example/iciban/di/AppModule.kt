@@ -3,7 +3,7 @@ package com.example.iciban.di
 import com.example.iciban.fragment.home.HomeViewModel
 import com.example.iciban.fragment.prelogin.login.LoginViewModel
 import com.example.iciban.fragment.prelogin.register.RegisterViewModel
-import com.example.iciban.fragment.select.SelectBannerViewModel
+import com.example.iciban.fragment.selectbanner.SelectBannerViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 

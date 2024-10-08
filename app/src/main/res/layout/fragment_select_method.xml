@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.prelogin.selectmethod.SelectMethodFragment">
+    tools:context=".fragment.prelogin.selectloginmethod.SelectLoginMethodFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
