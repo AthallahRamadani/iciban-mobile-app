@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#EDE4DE"
     android:paddingHorizontal="10dp"
-    tools:context=".fragment.login.LoginFragment">
+    tools:context=".fragment.prelogin.login.LoginFragment">
 
     <ImageView
         android:id="@+id/banner_login"

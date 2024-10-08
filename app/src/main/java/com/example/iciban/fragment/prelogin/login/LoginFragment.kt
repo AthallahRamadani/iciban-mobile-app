@@ -1,4 +1,4 @@
-package com.example.iciban.fragment.login
+package com.example.iciban.fragment.prelogin.login
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -84,49 +84,30 @@ class LoginFragment : Fragment() {
         return password.length >= 8
     }
 
-    private fun  observeViewModel()
-    {
-       viewLifecycleOwner.lifecycleScope.launch {
-           repeatOnLifecycle((Lifecycle.State.STARTED)){
-               viewModel.loginState.collect{
-                   state -> if (state != null){
-                       when(state){
-                           is ResultState.Error ->{
-                               binding.root.showSnackbar(state.error.getErrorMessage())
-                               binding.progressBar.visibility = View.INVISIBLE
-                               binding.btnLogin.visibility = View.VISIBLE
-                           }
-                           is ResultState.Loading -> {
-                               binding.progressBar.visibility = View.VISIBLE
-                               binding.btnLogin.visibility = View.INVISIBLE
-                           }
+    private fun  observeViewModel() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle((Lifecycle.State.STARTED)) {
+                viewModel.loginState.collect { state ->
+                    if (state != null) {
+                        when (state) {
+                            is ResultState.Error -> {
+                                binding.root.showSnackbar(state.error.getErrorMessage())
+                                binding.progressBar.visibility = View.INVISIBLE
+                                binding.btnLogin.visibility = View.VISIBLE
+                            }
 
-                           is ResultState.Succes -> {
-                               findNavController().navigate(R.id.action_login_to_homeFragment)
-                           }
-                       }
-               }
-               }
-           }
-       }
+                            is ResultState.Loading -> {
+                                binding.progressBar.visibility = View.VISIBLE
+                                binding.btnLogin.visibility = View.INVISIBLE
+                            }
+
+                            is ResultState.Succes -> {
+                                findNavController().navigate(R.id.action_login_to_homeFragment)
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//
-//    }
-//
-//    override fun onCreateView(
-//        inflater: LayoutInflater, container: ViewGroup?,
-//        savedInstanceState: Bundle?
-//    ): View {
-//        _binding = FragmentLoginBinding.inflate(inflater, container, false)
-//        binding.btnLogin.setOnClickListener{
-//            findNavController().navigate(R.id.action_login_to_homeFragment)
-//        }
-//        binding.navRegister.setOnClickListener{
-//            findNavController().navigate(R.id.action_login_to_registerFragment)
-//        }
-//        return binding.root
-//    }
-
 }

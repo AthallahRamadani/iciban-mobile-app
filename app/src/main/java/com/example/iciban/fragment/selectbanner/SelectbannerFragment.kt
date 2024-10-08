@@ -1,14 +1,13 @@
-package com.example.iciban.fragment
+package com.example.iciban.fragment.select
 
 import android.animation.ObjectAnimator
-import android.content.res.ColorStateList
 import android.content.res.Resources
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.BounceInterpolator
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.fragment.findNavController
@@ -22,8 +21,11 @@ import com.example.iciban.utils.ArcLayoutManager
 import com.example.iciban.utils.ItemDragDownHelper
 import com.example.iciban.utils.RvState
 import com.example.iciban.utils.SnapOnScrollListener
+import org.koin.androidx.viewmodel.ext.android.activityViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class SelectFragment : Fragment() {
+
+class SelectbannerFragment : Fragment() {
 
     private var _binding: FragmentSelectBinding? = null
     private val binding get() = _binding!!
@@ -35,6 +37,8 @@ class SelectFragment : Fragment() {
         Category(2, "Naruto", R.drawable.banner_naturo),
         Category(3, "One Piece", R.drawable.banner_half_piece)
     )
+
+    private val viewModel: SelectBannerViewModel by activityViewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -63,7 +67,9 @@ class SelectFragment : Fragment() {
                 if (state.snapPosition >= 0 && state.snapPosition < rewards.size) {
                     if (!state.isLongPressed) {
                         val rewardCategory = rewards.map { it.name }
-                        navigateToAnotherFragment(rewardCategory[state.snapPosition])
+                        viewModel.bannerSelected.value = rewardCategory[state.snapPosition]
+                        Log.d("TAG", "observeRvState: ${viewModel.bannerSelected.value}")
+                        navigateToAnotherFragment()
                     }
                 } else {
                     resetToInitialState()
@@ -131,7 +137,7 @@ class SelectFragment : Fragment() {
         binding.rv.apply {
             adapter = ImageSelectAdapter(rewardImages, viewWidth, viewHeight)
             layoutManager = ArcLayoutManager(resources, screenWidth, viewWidth, viewHeight).also {
-                this@SelectFragment.layoutManager = it
+                this@SelectbannerFragment.layoutManager = it
             }
         }
 
@@ -157,9 +163,9 @@ class SelectFragment : Fragment() {
         ItemDragDownHelper(requireContext(), rvState, 0.5f, 1f).attachToRv(binding.rv)
     }
 
-    private fun navigateToAnotherFragment(selectedCategory: String) {
+    private fun navigateToAnotherFragment() {
         val action =
-            SelectFragmentDirections.actionSelectFragmentToGachaFragment(selectedCategory)
+            SelectbannerFragmentDirections.actionSelectFragmentToGachaFragment()
         findNavController().navigate(action)
     }
 

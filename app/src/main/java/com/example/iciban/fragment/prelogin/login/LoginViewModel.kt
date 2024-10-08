@@ -1,4 +1,4 @@
-package com.example.iciban.fragment.login
+package com.example.iciban.fragment.prelogin.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

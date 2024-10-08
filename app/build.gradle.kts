@@ -72,7 +72,10 @@ dependencies {
     releaseImplementation(libs.library.no.op)
 
     //lottieAnimation
-    implementation ("com.airbnb.android:lottie:6.5.2")
+    implementation(libs.lottie)
+
+    //serialized
+    implementation(libs.kotlinx.serialization.json)
 
 
 }

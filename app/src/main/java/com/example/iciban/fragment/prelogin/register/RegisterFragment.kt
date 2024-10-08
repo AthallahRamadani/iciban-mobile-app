@@ -1,4 +1,4 @@
-package com.example.iciban.fragment.register
+package com.example.iciban.fragment.prelogin.register
 
 import android.os.Bundle
 import android.util.Patterns

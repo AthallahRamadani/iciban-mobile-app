@@ -21,7 +21,7 @@
 
     <fragment
         android:id="@+id/selectFragment"
-        android:name="com.example.iciban.fragment.SelectFragment"
+        android:name="com.example.iciban.fragment.select.SelectbannerFragment"
         android:label="fragment_select"
         tools:layout="@layout/fragment_select">
         <action
@@ -34,16 +34,13 @@
         android:name="com.example.iciban.fragment.GachaFragment"
         android:label="fragment_gacha"
         tools:layout="@layout/fragment_gacha">
-        <argument
-            android:name="selectedCategory"
-            app:argType="string" />
         <action
             android:id="@+id/action_gachaFragment_to_selectFragment"
             app:destination="@id/selectFragment" />
     </fragment>
     <fragment
         android:id="@+id/login"
-        android:name="com.example.iciban.fragment.login.LoginFragment"
+        android:name="com.example.iciban.fragment.prelogin.login.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login">
         <action
@@ -55,7 +52,7 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.example.iciban.fragment.register.RegisterFragment"
+        android:name="com.example.iciban.fragment.prelogin.register.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register">
         <action
