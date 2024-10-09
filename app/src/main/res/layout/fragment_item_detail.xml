@@ -49,7 +49,7 @@
                 <ImageView
                     android:id="@+id/notif"
                     android:layout_width="30dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="25dp"
                     android:src="@drawable/notif"
                     app:layout_constraintEnd_toStartOf="@id/profile_pic"
                     app:layout_constraintTop_toTopOf="parent"
