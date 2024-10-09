@@ -37,6 +37,7 @@ class GachaFragment : Fragment() {
         _binding = FragmentGachaBinding.inflate(inflater, container, false)
         binding.btnFinish.setOnClickListener{
             findNavController().navigate(R.id.action_gachaFragment_to_selectFragment)
+            Toast.makeText(context,"Your Item Added to your item's inventory",Toast.LENGTH_LONG).show()
         }
         return binding.root
     }

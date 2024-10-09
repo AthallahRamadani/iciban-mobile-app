@@ -40,7 +40,10 @@
             android:defaultValue="1" />
         <action
             android:id="@+id/action_gachaFragment_to_selectFragment"
-            app:destination="@id/selectFragment" />
+            app:destination="@id/selectFragment"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/gachaFragment"/>
+
     </fragment>
     <fragment
         android:id="@+id/login"
@@ -76,7 +79,10 @@
             app:destination="@id/itemDetailFragment" />
         <action
             android:id="@+id/action_itemsListFragment_to_gachaFragment"
-            app:destination="@id/gachaFragment" />
+            app:destination="@id/gachaFragment"
+            app:popUpTo="@id/itemsListFragment"
+            app:popUpToInclusive="true"
+            />
     </fragment>
     <fragment
         android:id="@+id/itemDetailFragment"
