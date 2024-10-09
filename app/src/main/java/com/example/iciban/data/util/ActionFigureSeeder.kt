@@ -49,9 +49,27 @@ object ActionFigureSeeder {
             "NATORU SHIPPUDEN"
         ),
         ActionFigure(
+            "Sakaru",
+            R.drawable.action_fig_sakaru,
+            1.0f,
+            1,
+            2,
+            "A talented kunoichi from Konohagakure, Sakaru started as a young ninja with little self-confidence but grew into a powerful medical-nin and skilled fighter under the mentorship of Tsunade. With her mastery of medical ninjutsu and immense strength, Sakaru supports her allies on the battlefield while striving to protect her loved ones",
+            "NATORU SHIPPUDEN"
+        ),
+        ActionFigure(
+            "The Rock Lee",
+            R.drawable.action_fig_rocklee,
+            3.0f,
+            1,
+            3,
+            "A hardworking and passionate ninja, Rock Lee is known for his taijutsu prowess. Despite lacking the ability to use ninjutsu or genjutsu, Lee’s dedication to his training under Might Guy has made him one of the strongest hand-to-hand combatants in the village. His boundless energy and determination fuel his drive to surpass his limits.",
+            "NATORU SHIPPUDEN"
+        ),
+        ActionFigure(
             "Henariya",
             R.drawable.action_fig_henariya,
-            3.0f,
+            1.0f,
             1,
             3,
             "A legendary ninja and one of the famed Three Sannin of Konohagakure, Jiraiya was a master of ninjutsu, known for his powerful toad summoning techniques and expertise in sealing jutsu. Despite his often goofy and perverted demeanor, Jiraiya was a wise and compassionate mentor who played a crucial role in shaping some of the most influential figures in the ninja world, including the Fourth Hokage and Naruto Uzumaki.",
@@ -83,9 +101,91 @@ object ActionFigureSeeder {
             4,
             "The Straw Hats' eccentric musician, Broke is an animated skeleton who wields a cane sword and has a penchant for cracking bone-related puns. He ate the Yomi Yomi no Mi, a Devil Fruit that allows him to return to life after dying once. But shortly after he lost all of his assets which makes him broke.",
             "1/2NEPIECE"
-        )
+        ),
+        ActionFigure(
+            "Choppoko",
+            R.drawable.action_one_choppoko,
+            3.0f,
+            1,
+            4,
+            "The Straw Hat Pirates’ doctor, Chopper is a reindeer who gained the ability to transform into a human-reindeer hybrid after eating the Hito Hito no Mi (Human-Human Fruit), a Zoan-type Devil Fruit. Born on the winter island of Drum. Now it likes to feast on deer crackers and likely to say Nun! a lot",
+            "1/2NEPIECE"
+        ),
+        ActionFigure(
+            "Freanky",
+            R.drawable.action_one_freanky,
+            2.0f,
+            1,
+            2,
+            "The Straw Hat Pirates’ shipwright, Freanky is a cyborg with a flamboyant personality and a passion for building and upgrading ships. Formerly the leader of the Freanky Family, he joined the Straw Hats after helping them build their iconic ship, the Thousand Sunny",
+            "1/2NEPIECE"
+        ),
+        ActionFigure(
+            "Gyami",
+            R.drawable.action_one_gyami,
+            5.0f,
+            1,
+            2,
+            "The Straw Hat Pirates’ skilled navigator, Gyami is a clever and resourceful pirate with a deep love for maps and treasure. Originally a thief who stole from pirates to free her village from the tyrannical Arloong, Gyami eventually joined Ruffy’s crew after they helped her reclaim her freedom.",
+            "1/2NEPIECE"
+        ),
+        ActionFigure(
+            "Mohawk",
+            R.drawable.action_one_mohawk,
+            5.0f,
+            1,
+            2,
+            "Known as the Strongest Swordsman in the World, Mohawk is a calm and composed warrior with unparalleled swordsmanship skills. He wields the massive black blade Yoru, one of the 12 Supreme Grade Swords, and is capable of effortlessly cutting down ships and opponents with deadly precision.",
+            "1/2NEPIECE"
+        ),
+        ActionFigure(
+            "Njisanji",
+            R.drawable.action_one_sanji,
+            3.0f,
+            1,
+            2,
+            "Nijisanji is the Straw Hat Pirates’ cook and one of the most skilled martial artists in the crew. Raised by the Vinsmoke family, Nijianji rejected his royal lineage due to their cruelty and sought a different path in life. Lately he”s been cooked",
+            "1/2NEPIECE"
+        ),
+        ActionFigure(
+            "Nichigo",
+            R.drawable.action_bl_nichigo,
+            5.0f,
+            1,
+            2,
+            "As a Soul Reaper, Nichigo protects the living world from malevolent spirits known as Hollows, while navigating intense battles and discovering more about his own mysterious powers and heritage.",
+            "BLEACH"
+        ),
+        ActionFigure(
+            "Master Yamamoto",
+            R.drawable.action_bl_yamamoto,
+            5.0f,
+            1,
+            2,
+            " The founder and former captain-commander of the Gotei 13 in Bleach, Yamamoto is one of the most powerful and respected figures in Soul Society. As the leader of the 1st Division and the oldest Soul Reaper. He also raised a young saiyan.",
+            "BLEACH"
+        ),
+        ActionFigure(
+            "Rukia Weedchiki",
+            R.drawable.action_bl_rukia,
+            4.0f,
+            1,
+            2,
+            "A member of the prestigious Weedchiki family and a Soul Reaper from the 13th Division of the Gotei 13, Rukia plays a pivotal role in the events of TidePods. She is a skilled fighter who wields the Zanpakutō Sode no Shirayuki, considered one of the most beautiful in Soul Society, with weed-based abilities that can make enemies high in battle.",
+            "BLEACH"
+        ),
+        ActionFigure(
+            "Shiji Hirako",
+            R.drawable.action_bl_sinji,
+            2.0f,
+            1,
+            2,
+            "Shinji is a former captain of the 5th Division in the Gotei 13 and the leader of the Visoreds, a group of Soul Reapers who gained Hollow powers. Shinji is known for his laid-back, sarcastic personality and his unique ability to maintain calm under pressure. However, after the evangelion event he went up to a chair and curl up in despair",
+            "BLEACH"
+        ),
 
-    )
+
+        )
 
     fun getActionFigByCategory(category: String): List<ActionFigure> {
         return listOfActionFigure.filter { it.category == category }
@@ -95,11 +195,11 @@ object ActionFigureSeeder {
         val filteredList = getActionFigByCategory(category)
         return filteredList.random()
 
-}
+    }
 
-fun getActionFigByTitle(title: String): ActionFigure? {
-    return listOfActionFigure.find { it.title.equals(title, ignoreCase = true) }
-}
+    fun getActionFigByTitle(title: String): ActionFigure? {
+        return listOfActionFigure.find { it.title.equals(title, ignoreCase = true) }
+    }
 
 
 }
