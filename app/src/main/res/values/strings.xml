@@ -41,4 +41,9 @@
     <string name="desc">Description</string>
     <string name="description">Naruto follows the journey of Naruto Uzumaki, a young ninja striving to gain recognition from his village and become the Hokage. Along the way, he faces numerous enemies, hones his skills, and searches for his true identity.</string>
     <string name="gradient">gradient</string>
+    <string name="password">Password</string>
+    <string name="or_login_with">Or Login With Google</string>
+    <string name="default_user_name">john doe</string>
+    <string name="logout_successful">Logout Successful</string>
+    <string name="logout_failed">Logout Failed</string>
 </resources>

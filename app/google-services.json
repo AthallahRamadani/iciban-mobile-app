@@ -12,7 +12,12 @@
           "package_name": "com.example.iciban"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "839628494542-kb0m77hovd5tid7v6tt01f6bnngci5te.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyACSuFUIGVGFzcsvhcXhnEcBBmR2PodESI"
@@ -20,7 +25,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "839628494542-kb0m77hovd5tid7v6tt01f6bnngci5te.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

@@ -83,7 +83,17 @@ dependencies {
     implementation (libs.glide)
 
     //Scratch
-    implementation("com.github.cooltechworks:ScratchView:v1.1")
+    implementation(libs.scratchview)
+
+    //Authentication with Credential Manager
+    implementation(libs.play.services.auth)
+    implementation(libs.androidx.credentials)
+    implementation(libs.androidx.credentials.play.services.auth)
+    implementation(libs.googleid)
+
+    implementation (libs.firebase.auth.v2101)
+
+
 
 
 }

@@ -1,10 +1,12 @@
 package com.example.iciban.fragment.prelogin.login
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -15,6 +17,15 @@ import com.example.iciban.data.ResultState
 import com.example.iciban.databinding.FragmentLoginBinding
 import com.example.iciban.utils.getErrorMessage
 import com.example.iciban.utils.showSnackbar
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.AuthCredential
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -23,12 +34,14 @@ class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
     private val viewModel : LoginViewModel by viewModel()
+    private lateinit var googleSignInClient: GoogleSignInClient
+    private lateinit var firebaseAuth: FirebaseAuth
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -37,7 +50,9 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         observeViewModel()
         initView()
+        signInGoogle()
     }
+
     private fun initView(){
         initViewBtnValid()
         binding.navRegister.setOnClickListener {
@@ -109,5 +124,71 @@ class LoginFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun signInGoogle(){
+        firebaseAuth = FirebaseAuth.getInstance()
+
+        val googleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken("839628494542-kb0m77hovd5tid7v6tt01f6bnngci5te.apps.googleusercontent.com")
+            .requestEmail()
+            .build()
+        googleSignInClient = GoogleSignIn.getClient(requireActivity(), googleSignInOptions)
+
+        binding.btnGoogleSignIn.setOnClickListener {
+            signIn()
+        }
+        val firebaseUser = firebaseAuth.currentUser
+        if (firebaseUser != null) {
+            navigateToHome()
+        }
+    }
+
+    private fun signIn() {
+        val intent = googleSignInClient.signInIntent
+        startActivityForResult(intent, 100)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 100) {
+            val signInAccountTask: Task<GoogleSignInAccount> =
+                GoogleSignIn.getSignedInAccountFromIntent(data)
+
+            if (signInAccountTask.isSuccessful) {
+                try {
+                    val googleSignInAccount = signInAccountTask.getResult(ApiException::class.java)
+                    if (googleSignInAccount != null) {
+                        val authCredential: AuthCredential = GoogleAuthProvider.getCredential(
+                            googleSignInAccount.idToken, null
+                        )
+                        firebaseAuth.signInWithCredential(authCredential)
+                            .addOnCompleteListener(requireActivity()) { task ->
+                                if (task.isSuccessful) {
+                                    navigateToHome()
+                                    displayToast("Firebase authentication successful")
+                                } else {
+                                    displayToast("Authentication Failed: ${task.exception?.message}")
+                                }
+                            }
+                    }
+                } catch (e: ApiException) {
+                    e.printStackTrace()
+                }
+            }
+        }
+    }
+
+    private fun navigateToHome() {
+        findNavController().navigate(R.id.action_login_to_homeFragment)
+    }
+
+    private fun displayToast(message: String) {
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
