@@ -30,8 +30,8 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="0dp"
-                    android:layout_marginRight="24dp">
+                    android:layout_marginStart="0dp"
+                    android:layout_marginEnd="24dp">
 
                     <ImageButton
                         android:id="@+id/btn_top_up"
@@ -55,7 +55,7 @@
                     <ImageView
                         android:id="@+id/notif"
                         android:layout_width="30dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="25dp"
                         android:layout_marginHorizontal="16dp"
                         android:src="@drawable/notif"
                         app:layout_constraintBottom_toBottomOf="parent"

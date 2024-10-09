@@ -46,4 +46,6 @@
     <string name="default_user_name">john doe</string>
     <string name="logout_successful">Logout Successful</string>
     <string name="logout_failed">Logout Failed</string>
+    <string name="setting">Setting</string>
+    <string name="inventory">Inventory</string>
 </resources>

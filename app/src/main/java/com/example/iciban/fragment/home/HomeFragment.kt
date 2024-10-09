@@ -53,7 +53,7 @@ class HomeFragment : Fragment() {
         firebaseAuth = FirebaseAuth.getInstance()
         val firebaseUser = firebaseAuth.currentUser
         if (firebaseUser != null) {
-            Glide.with(requireContext()).load(firebaseUser.photoUrl).into(binding.imgProfile)
+            Glide.with(requireContext()).load(firebaseUser.photoUrl).into(binding.profilePic)
             binding.tvUsername.text = firebaseUser.displayName
         }
         binding.btnLogout.setOnClickListener {
