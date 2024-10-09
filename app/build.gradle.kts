@@ -82,5 +82,8 @@ dependencies {
     //Glide
     implementation (libs.glide)
 
+    //Scratch
+    implementation("com.github.cooltechworks:ScratchView:v1.1")
+
 
 }

@@ -32,9 +32,9 @@ class SelectbannerFragment : Fragment() {
     private lateinit var layoutManager: ArcLayoutManager
     private val rvState = MutableLiveData(RvState())
     private val rewards = listOf(
-        Category(1, "Bleach", R.drawable.banner_bleach),
-        Category(2, "Naruto", R.drawable.banner_naturo),
-        Category(3, "One Piece", R.drawable.banner_half_piece)
+        Category(1, "BLEACH", R.drawable.banner_bleach),
+        Category(2, "NATORU SHIPPUDEN", R.drawable.banner_naturo),
+        Category(3, "1/2NEPIECE", R.drawable.banner_half_piece)
     )
 
     private val viewModel: SelectBannerViewModel by activityViewModel()

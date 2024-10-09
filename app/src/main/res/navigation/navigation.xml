@@ -34,6 +34,10 @@
         android:name="com.example.iciban.fragment.GachaFragment"
         android:label="fragment_gacha"
         tools:layout="@layout/fragment_gacha">
+        <argument
+            android:name="total_pull"
+            app:argType="integer"
+            android:defaultValue="1" />
     </fragment>
     <fragment
         android:id="@+id/login"

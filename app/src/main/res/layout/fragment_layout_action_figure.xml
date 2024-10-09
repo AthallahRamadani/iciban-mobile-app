@@ -2,8 +2,12 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    app:cardBackgroundColor="@color/white"
+    android:layout_margin="5dp"
+    android:outlineSpotShadowColor="@color/white"
+    android:outlineAmbientShadowColor="@color/white"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -17,6 +21,7 @@
             android:layout_height="300dp"
             android:contentDescription="@string/naturo_action_fig"
             android:scaleType="centerCrop"
+            android:background="@color/white"
             android:src="@drawable/naturo_action_fig"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -27,7 +32,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/text_view_bg_avaible"
-            android:paddingHorizontal="10dp"
             android:progressTint="#F3C211"
             android:rating="5"
             app:layout_constraintBottom_toBottomOf="parent"
