@@ -3,10 +3,66 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginHorizontal="24dp"
     android:background="@color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.items.ItemsListFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/btn_back"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:navigationIcon="@drawable/ic_back">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="24dp"
+                android:layout_marginLeft="0dp"
+                >
+
+                <ImageButton
+                    android:id="@+id/btn_top_up"
+                    android:layout_width="140dp"
+                    android:layout_height="40dp"
+                    android:background="@color/white"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/icon_token"
+                    android:layout_marginTop="8dp"
+
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/profile_pic"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/profile"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <ImageView
+                    android:id="@+id/notif"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/notif"
+                    app:layout_constraintEnd_toStartOf="@id/profile_pic"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginHorizontal="16dp"
+                    />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </com.google.android.material.appbar.MaterialToolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
 
     <TextView
         android:id="@+id/title_category"
@@ -14,7 +70,8 @@
         android:layout_height="wrap_content"
         android:text="@string/naturo"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/app_bar"
+        android:layout_marginHorizontal="24dp"
         android:textSize="28sp"
         android:fontFamily="@font/bebas_neue"
         android:textColor="@color/black"
@@ -26,6 +83,7 @@
         android:text="@string/item_list"
         android:fontFamily="@font/inter"
         android:textSize="16sp"
+        android:layout_marginHorizontal="24dp"
         app:layout_constraintTop_toBottomOf="@id/title_category"
         app:layout_constraintStart_toStartOf="parent"
         />
@@ -34,39 +92,43 @@
         android:id="@+id/rv_action_figure"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_marginHorizontal="24dp"
         android:layout_marginTop="10dp"
         app:layout_constraintStart_toEndOf="@id/tx_item_list"
         app:layout_constraintTop_toBottomOf="@id/tx_item_list"
         tools:listitem="@layout/fragment_layout_action_figure"
          />
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/token_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginHorizontal="20dp"
-        android:background="@color/white">
+        android:layout_marginHorizontal="45dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
         <ImageButton
             android:id="@+id/btn_pull_one"
-            android:layout_width="120dp"
-            android:layout_height="80dp"
-            android:scaleType="centerCrop"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="150dp"
+            android:layout_height="90dp"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:scaleType="fitXY"
             android:src="@drawable/one_pull"
-            android:backgroundTint="@color/white"
-            />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <ImageButton
             android:id="@+id/btn_pull_five"
-            android:layout_width="120dp"
-            android:layout_height="80dp"
-            android:scaleType="centerInside"
-            app:layout_constraintTop_toTopOf="parent"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="150dp"
+            android:layout_height="90dp"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:scaleType="fitXY"
             android:src="@drawable/five_pull"
             app:layout_constraintEnd_toEndOf="parent"
-            android:backgroundTint="@color/white"
-
-            />
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

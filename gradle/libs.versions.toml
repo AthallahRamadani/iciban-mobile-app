@@ -19,6 +19,7 @@ navigationFragmentKtx = "2.8.1"
 navigationUiKtx = "2.8.1"
 navigation = "2.8.1"
 retrofit = "2.9.0"
+scratchview = "v1.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }

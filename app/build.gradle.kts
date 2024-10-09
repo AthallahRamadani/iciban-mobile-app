@@ -80,7 +80,7 @@ dependencies {
     //Glide
     implementation ("com.github.bumptech.glide:glide:4.16.0")
 
-    //
+    //Scratch
     implementation("com.github.cooltechworks:ScratchView:v1.1")
 
 

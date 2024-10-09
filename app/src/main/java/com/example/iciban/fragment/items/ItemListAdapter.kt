@@ -14,7 +14,7 @@ import com.example.iciban.data.model.ActionFigure
 
 class ItemListAdapter(
     private val context : Context,
-    private val actionFigures: List<ActionFigure>
+    private var actionFigures: List<ActionFigure>
 ) : RecyclerView.Adapter<ItemListAdapter.ViewHolder>(){
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -35,6 +35,10 @@ class ItemListAdapter(
         Glide.with(context)
             .load(actionFigure.imageResId)
             .into(holder.ivActionFigure)
+    }
+    fun updateData(newActionFigures: List<ActionFigure>) {
+        actionFigures = newActionFigures
+        notifyDataSetChanged()
     }
 
     override fun getItemCount(): Int = actionFigures.size
