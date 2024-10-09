@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "839628494542",
+    "project_id": "ichiban-kuji-eb5e2",
+    "storage_bucket": "ichiban-kuji-eb5e2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:839628494542:android:835538d66aff15a284229f",
+        "android_client_info": {
+          "package_name": "com.example.iciban"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACSuFUIGVGFzcsvhcXhnEcBBmR2PodESI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
