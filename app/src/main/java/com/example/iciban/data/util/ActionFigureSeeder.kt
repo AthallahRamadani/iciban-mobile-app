@@ -42,7 +42,7 @@ object ActionFigureSeeder {
         ActionFigure(
             "Kagurabachi Uchiha",
             R.drawable.action_fig_itachi,
-            4.5f,
+            4.0f,
             2,
             5,
             "Once hailed as a prodigy of the Uchiha clan, Itachi bears the burden of his tragic decision to annihilate his entire clan to prevent a greater disaster. Feared as a traitor and criminal, Kagurabachi wields the Mangekyo Sharingan, granting him unparalleled abilities. Despite his dark past, Itachi’s actions were rooted in a desire for peace.",
@@ -51,7 +51,7 @@ object ActionFigureSeeder {
         ActionFigure(
             "Henariya",
             R.drawable.action_fig_henariya,
-            3.5f,
+            3.0f,
             1,
             3,
             "A legendary ninja and one of the famed Three Sannin of Konohagakure, Jiraiya was a master of ninjutsu, known for his powerful toad summoning techniques and expertise in sealing jutsu. Despite his often goofy and perverted demeanor, Jiraiya was a wise and compassionate mentor who played a crucial role in shaping some of the most influential figures in the ninja world, including the Fourth Hokage and Naruto Uzumaki.",
@@ -78,7 +78,7 @@ object ActionFigureSeeder {
         ActionFigure(
             "Broke",
             R.drawable.action_fig_broke,
-            5.0f,
+            1.0f,
             1,
             4,
             "The Straw Hats' eccentric musician, Broke is an animated skeleton who wields a cane sword and has a penchant for cracking bone-related puns. He ate the Yomi Yomi no Mi, a Devil Fruit that allows him to return to life after dying once. But shortly after he lost all of his assets which makes him broke.",
@@ -91,18 +91,15 @@ object ActionFigureSeeder {
         return listOfActionFigure.filter { it.category == category }
     }
 
-    fun getRandomActionFigByCategory(category: String): ActionFigure? {
+    fun getRandomActionFigByCategory(category: String): ActionFigure {
         val filteredList = getActionFigByCategory(category)
-        return if (filteredList.isNotEmpty()) {
-            filteredList.random()
-        } else {
-            null
-        }
-    }
+        return filteredList.random()
 
-    fun getActionFigByTitle(title: String): ActionFigure? {
-        return listOfActionFigure.find { it.title.equals(title, ignoreCase = true) }
-    }
+}
+
+fun getActionFigByTitle(title: String): ActionFigure? {
+    return listOfActionFigure.find { it.title.equals(title, ignoreCase = true) }
+}
 
 
 }
